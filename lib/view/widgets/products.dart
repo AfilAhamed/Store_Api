@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:store_api/helpers/colors.dart';
 
-class Products extends StatelessWidget {
-  const Products({super.key});
+class ProductsWidget extends StatelessWidget {
+  const ProductsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

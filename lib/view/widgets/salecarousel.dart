@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SaleCarousel extends StatelessWidget {
-  const SaleCarousel({super.key});
+class SaleCarouselWidget extends StatelessWidget {
+  const SaleCarouselWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

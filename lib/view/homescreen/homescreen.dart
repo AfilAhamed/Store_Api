@@ -1,9 +1,12 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:store_api/helpers/colors.dart';
 import 'package:store_api/view/widgets/products.dart';
 import 'package:store_api/view/widgets/salecarousel.dart';
+
+import '../productscreen/allproductscreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -80,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   activeColor: Colors.red)),
                           itemBuilder: (context, index) {
                             //sale carousel class
-                            return const SaleCarousel();
+                            return const SaleCarouselWidget();
                           },
                         ),
                       ),
@@ -99,7 +102,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           const Spacer(),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: const AllProducts()));
+                              },
                               icon: Icon(
                                 IconlyBold.arrowRight2,
                                 color: AppColors().lightIconsColor,
@@ -117,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisSpacing: 0.0,
                                 childAspectRatio: 0.6),
                         itemBuilder: (context, index) {
-                          return const Products();
+                          return const ProductsWidget();
                         },
                       )
                     ],
