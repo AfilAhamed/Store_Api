@@ -17,7 +17,14 @@ class ProductDetailScreen extends StatelessWidget {
             const SizedBox(
               height: 18,
             ),
-            const BackButton(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                BackButton(
+                  color: AppColors().lightIconsColor,
+                ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:store_api/helpers/colors.dart';
+import 'package:store_api/view/categoryscreen/category_screen.dart';
 import 'package:store_api/view/widgets/products.dart';
 import 'package:store_api/view/widgets/salecarousel.dart';
 
@@ -35,7 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
             title: const Text('Home'),
             leading: IconButton(
-                onPressed: () {}, icon: const Icon(IconlyBold.category))),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.fade,
+                          child: const CategoryScreen()));
+                },
+                icon: const Icon(IconlyBold.category))),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
