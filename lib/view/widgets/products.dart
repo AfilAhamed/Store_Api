@@ -61,6 +61,14 @@ class Products extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'title',
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              )
             ],
           ),
         ),
