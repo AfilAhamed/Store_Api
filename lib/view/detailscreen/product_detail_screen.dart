@@ -1,3 +1,5 @@
+import 'package:card_swiper/card_swiper.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:store_api/helpers/colors.dart';
 
@@ -6,6 +8,7 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -61,6 +64,23 @@ class ProductDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(
+              height: size.height * 0.4,
+              child: Swiper(
+                itemBuilder: (context, index) {
+                  return FancyShimmerImage(
+                    width: double.infinity,
+                    imageUrl: '',
+                    boxFit: BoxFit.fill,
+                  );
+                },
+                autoplay: true,
+                itemCount: 3,
+                pagination: const SwiperPagination(
+                    builder: DotSwiperPaginationBuilder(
+                        color: Colors.white, activeColor: Colors.red)),
+              ),
+            )
           ],
         ),
       )),
