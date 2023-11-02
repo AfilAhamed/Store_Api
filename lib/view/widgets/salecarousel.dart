@@ -27,21 +27,23 @@ class SaleCarousel extends StatelessWidget {
               padding: const EdgeInsets.all(14.0),
               child: Container(
                 height: double.infinity,
+                //   width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
                     color: const Color(0xff9689ce)),
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
-                    //  mainAxisSize: MainAxisSize.max,
-                    //  mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(
+                        height: 10,
+                      ),
                       Text(
                         'Get the special discount',
                         style: TextStyle(color: Colors.white),
                       ),
                       SizedBox(
-                        height: 18,
+                        height: 10,
                       ),
                       Flexible(
                           child: SizedBox(
