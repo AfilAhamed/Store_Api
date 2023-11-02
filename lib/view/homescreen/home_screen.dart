@@ -6,7 +6,7 @@ import 'package:store_api/helpers/colors.dart';
 import 'package:store_api/view/widgets/products.dart';
 import 'package:store_api/view/widgets/salecarousel.dart';
 
-import '../productscreen/allproductscreen.dart';
+import '../productscreen/allproduct_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
