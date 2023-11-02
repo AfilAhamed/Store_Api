@@ -38,7 +38,10 @@ class Products extends StatelessWidget {
                                   color: AppColors().lightTextColor,
                                   fontWeight: FontWeight.w600))
                         ]))),
-                    const Icon(IconlyBold.heart)
+                    const Icon(
+                      IconlyBold.heart,
+                      color: Colors.red,
+                    )
                   ],
                 ),
               ),
@@ -56,7 +59,8 @@ class Products extends StatelessWidget {
                       color: Colors.red,
                       size: 28,
                     ),
-                    imageUrl: 'lib/assets/images/pngwing.com.png'),
+                    imageUrl:
+                        "https://media.istockphoto.com/id/1360927961/photo/abstract-background-with-interweaving-of-colored-lines-and-dots-network-connection-structure.jpg?s=612x612&w=0&k=20&c=UTu0m3kCMm6f1kien9TNCrFtliESKUMrAeyKkI5s56I="),
               ),
               const SizedBox(
                 height: 10,
@@ -67,8 +71,12 @@ class Products extends StatelessWidget {
                   'title',
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
                 ),
-              )
+              ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
             ],
           ),
         ),

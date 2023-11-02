@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:store_api/helpers/colors.dart';
+import 'package:store_api/view/widgets/products.dart';
 import 'package:store_api/view/widgets/salecarousel.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -60,22 +61,67 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: AppColors().lightIconsColor,
                     )),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                height: size.height * 0.25,
-                // swiper widget for carousel
-                child: Swiper(
-                  itemCount: 3,
-                  autoplay: true,
-                  pagination: const SwiperPagination(
-                      builder: DotSwiperPaginationBuilder(
-                          color: Colors.white, activeColor: Colors.red)),
-                  itemBuilder: (context, index) {
-                    //sale carousel class
-                    return const SaleCarousel();
-                  },
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      SizedBox(
+                        height: size.height * 0.25,
+                        // swiper widget for carousel
+                        child: Swiper(
+                          itemCount: 3,
+                          autoplay: true,
+                          pagination: const SwiperPagination(
+                              builder: DotSwiperPaginationBuilder(
+                                  color: Colors.white,
+                                  activeColor: Colors.red)),
+                          itemBuilder: (context, index) {
+                            //sale carousel class
+                            return const SaleCarousel();
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 13,
+                      ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const Text(
+                            'Latest Products',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 23),
+                          ),
+                          const Spacer(),
+                          IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                IconlyBold.arrowRight2,
+                                color: AppColors().lightIconsColor,
+                              ))
+                        ],
+                      ),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: 3,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 0.0,
+                                mainAxisSpacing: 0.0,
+                                childAspectRatio: 0.6),
+                        itemBuilder: (context, index) {
+                          return const Products();
+                        },
+                      )
+                    ],
+                  ),
                 ),
               )
             ],
