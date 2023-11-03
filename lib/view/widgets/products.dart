@@ -6,7 +6,9 @@ import 'package:store_api/helpers/colors.dart';
 import 'package:store_api/view/detailscreen/product_detail_screen.dart';
 
 class ProductsWidget extends StatelessWidget {
-  const ProductsWidget({super.key});
+  final String imageUrl, title;
+  const ProductsWidget(
+      {super.key, required this.imageUrl, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -67,19 +69,19 @@ class ProductsWidget extends StatelessWidget {
                       color: Colors.red,
                       size: 28,
                     ),
-                    imageUrl:
-                        "https://media.istockphoto.com/id/1360927961/photo/abstract-background-with-interweaving-of-colored-lines-and-dots-network-connection-structure.jpg?s=612x612&w=0&k=20&c=UTu0m3kCMm6f1kien9TNCrFtliESKUMrAeyKkI5s56I="),
+                    imageUrl: imageUrl),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'title',
+                  title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                  style: const TextStyle(
+                      fontSize: 17, fontWeight: FontWeight.w700),
                 ),
               ),
               SizedBox(

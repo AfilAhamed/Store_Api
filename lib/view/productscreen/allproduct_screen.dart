@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:store_api/model/product_model.dart';
 import 'package:store_api/view/widgets/products.dart';
 
 class AllProducts extends StatelessWidget {
-  const AllProducts({super.key});
+  final List<ProductModel> productList;
+  const AllProducts({super.key, required this.productList});
 
   @override
   Widget build(BuildContext context) {
@@ -10,19 +12,26 @@ class AllProducts extends StatelessWidget {
       appBar: AppBar(
         title: const Text('All Products'),
       ),
-      body: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: 3,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 0.0,
-            mainAxisSpacing: 0.0,
-            childAspectRatio: 0.7),
-        itemBuilder: (context, index) {
-          return const ProductsWidget();
-        },
-      ),
+      body: productList.isEmpty
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : GridView.builder(
+              //shrinkWrap: true,
+              // physics: const NeverScrollableScrollPhysics(),
+              itemCount: productList.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 0.0,
+                  mainAxisSpacing: 0.0,
+                  childAspectRatio: 0.7),
+              itemBuilder: (context, index) {
+                return ProductsWidget(
+                  imageUrl: productList[index].images![0],
+                  title: productList[index].title.toString(),
+                );
+              },
+            ),
     );
   }
 }
