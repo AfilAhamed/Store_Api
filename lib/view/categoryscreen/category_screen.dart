@@ -26,37 +26,35 @@ class CategoryScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              color: Colors.blue,
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: FancyShimmerImage(
-                        boxFit: BoxFit.fill,
-                        height: size.width * 0.45,
-                        width: size.width * 0.45,
-                        errorWidget: const Icon(
-                          IconlyBold.danger,
-                          color: Colors.red,
-                          size: 28,
-                        ),
-                        imageUrl: ""),
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: FancyShimmerImage(
+                      boxFit: BoxFit.fill,
+                      height: size.width * 0.45,
+                      width: size.width * 0.45,
+                      errorWidget: const Icon(
+                        IconlyBold.danger,
+                        color: Colors.red,
+                        size: 28,
+                      ),
+                      imageUrl:
+                          "https://media.istockphoto.com/id/1360927961/photo/abstract-background-with-interweaving-of-colored-lines-and-dots-network-connection-structure.jpg?s=612x612&w=0&k=20&c=UTu0m3kCMm6f1kien9TNCrFtliESKUMrAeyKkI5s56I="),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "name",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        backgroundColor:
+                            AppColors().lightCardColor.withOpacity(0.5)),
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "name",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          backgroundColor:
-                              AppColors().lightCardColor.withOpacity(0.5)),
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           );
         },
