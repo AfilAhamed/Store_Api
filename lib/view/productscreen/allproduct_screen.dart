@@ -29,6 +29,8 @@ class AllProducts extends StatelessWidget {
                 return ProductsWidget(
                   imageUrl: productList[index].images![0],
                   title: productList[index].title.toString(),
+                  price: productList[index].price.toString(),
+                  id: productList[index].id!.toInt(),
                 );
               },
             ),

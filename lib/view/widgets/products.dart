@@ -6,9 +6,14 @@ import 'package:store_api/helpers/colors.dart';
 import 'package:store_api/view/detailscreen/product_detail_screen.dart';
 
 class ProductsWidget extends StatelessWidget {
-  final String imageUrl, title;
+  final String imageUrl, title, price;
+  final int id;
   const ProductsWidget(
-      {super.key, required this.imageUrl, required this.title});
+      {super.key,
+      required this.imageUrl,
+      required this.title,
+      required this.price,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,9 @@ class ProductsWidget extends StatelessWidget {
                 context,
                 PageTransition(
                     type: PageTransitionType.fade,
-                    child: const ProductDetailScreen()));
+                    child: ProductDetailScreen(
+                      id: id,
+                    )));
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +50,7 @@ class ProductsWidget extends StatelessWidget {
                                     color: Color.fromRGBO(33, 150, 243, 1)),
                                 children: <TextSpan>[
                           TextSpan(
-                              text: "168.00",
+                              text: price,
                               style: TextStyle(
                                   color: AppColors().lightTextColor,
                                   fontWeight: FontWeight.w600))

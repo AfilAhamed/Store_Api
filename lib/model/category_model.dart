@@ -14,4 +14,10 @@ class CategoryModel {
     name = json['name'];
     image = json['image'];
   }
+
+  static List<CategoryModel> categoriesFromSnapshoot(List productSnapshoot) {
+    return productSnapshoot.map((data) {
+      return CategoryModel.fromJson(data);
+    }).toList();
+  }
 }

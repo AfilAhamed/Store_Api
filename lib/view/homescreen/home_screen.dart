@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 12,
+                        itemCount: 6,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
@@ -157,6 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               : ProductsWidget(
                                   imageUrl: productList[index].images![0],
                                   title: productList[index].title.toString(),
+                                  price: productList[index].price.toString(),
+                                  id: productList[index].id!.toInt(),
                                 );
                         },
                       )
