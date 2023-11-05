@@ -15,11 +15,6 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   List<CategoryModel> categoriesList = [];
 
-  // @override
-  // void initState() {
-  //   getCategories();
-  //   super.initState();
-  // }
   @override
   void didChangeDependencies() {
     getCategories();
