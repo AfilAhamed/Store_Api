@@ -8,12 +8,19 @@ class ProductServices {
     var response =
         await http.get(Uri.parse('https://api.escuelajs.co/api/v1/products'));
 
-    //print(jsonDecode(response.body));
-    List templist = [];
-    var data = jsonDecode(response.body);
-    for (var i in data) {
-      templist.add(i);
+    try {
+      List templist = [];
+      var jasonData = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        for (var i in jasonData) {
+          templist.add(i);
+        }
+        return ProductModel.productsFromSnapshoot(templist);
+      } else {
+        throw jasonData['message'];
+      }
+    } catch (errors) {
+      throw errors.toString();
     }
-    return ProductModel.productsFromSnapshoot(templist);
   }
 }

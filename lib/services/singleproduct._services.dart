@@ -8,8 +8,12 @@ class SingleProductServices {
     var response = await http
         .get(Uri.parse('https://api.escuelajs.co/api/v1/products/$id'));
 
-    var data = jsonDecode(response.body);
+    var jsonData = jsonDecode(response.body);
 
-    return ProductModel.fromJson(data);
+    if (response.statusCode == 200) {
+      return ProductModel.fromJson(jsonData);
+    } else {
+      throw 'error';
+    }
   }
 }
