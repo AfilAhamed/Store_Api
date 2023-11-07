@@ -2,13 +2,12 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+import 'package:store_api/controller/homecontroller.dart';
 import 'package:store_api/helpers/colors.dart';
-import 'package:store_api/model/product_model.dart';
-import 'package:store_api/services/product_services.dart';
 import 'package:store_api/view/categoryscreen/category_screen.dart';
 import 'package:store_api/view/widgets/products.dart';
 import 'package:store_api/view/widgets/salecarousel.dart';
-
 import '../productscreen/allproduct_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,7 +19,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final searchController = TextEditingController();
-  List<ProductModel> productList = [];
 
   @override
   void dispose() {
@@ -29,18 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    getProducts();
-    super.didChangeDependencies();
-  }
-
-  Future<void> getProducts() async {
-    productList = await ProductServices.getAllProducts();
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
+    //provider
+    final homeProvider = Provider.of<HomeScreenController>(context);
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
@@ -130,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     PageTransition(
                                         type: PageTransitionType.fade,
                                         child: AllProducts(
-                                          productList: productList,
+                                          productList: homeProvider.productList,
                                         )));
                               },
                               icon: Icon(
@@ -150,15 +139,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisSpacing: 0.0,
                                 childAspectRatio: 0.7),
                         itemBuilder: (context, index) {
-                          return productList.isEmpty
+                          return homeProvider.productList.isEmpty
                               ? const Center(
                                   child: CircularProgressIndicator(),
                                 )
                               : ProductsWidget(
-                                  imageUrl: productList[index].images![0],
-                                  title: productList[index].title.toString(),
-                                  price: productList[index].price.toString(),
-                                  id: productList[index].id!.toInt(),
+                                  imageUrl: homeProvider
+                                      .productList[index].images![0],
+                                  title: homeProvider.productList[index].title
+                                      .toString(),
+                                  price: homeProvider.productList[index].price
+                                      .toString(),
+                                  id: homeProvider.productList[index].id!
+                                      .toInt(),
                                 );
                         },
                       )

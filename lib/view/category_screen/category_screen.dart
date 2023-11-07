@@ -1,47 +1,31 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:provider/provider.dart';
+import 'package:store_api/controller/categorycontroller.dart';
 import 'package:store_api/helpers/colors.dart';
-import 'package:store_api/model/category_model.dart';
-import 'package:store_api/services/category_services.dart';
 
-class CategoryScreen extends StatefulWidget {
+class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
 
   @override
-  State<CategoryScreen> createState() => _CategoryScreenState();
-}
-
-class _CategoryScreenState extends State<CategoryScreen> {
-  List<CategoryModel> categoriesList = [];
-
-  @override
-  void didChangeDependencies() {
-    getCategories();
-    super.didChangeDependencies();
-  }
-
-  Future<void> getCategories() async {
-    categoriesList = await CategoryServices.getAllCategories();
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
+    //provider
+    final categoryProvider = Provider.of<CategoryController>(context);
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Categories'),
       ),
-      body: categoriesList.isEmpty
+      body: categoryProvider.categoriesList.isEmpty
           ? const Center(
               child: CircularProgressIndicator(),
             )
           : GridView.builder(
               shrinkWrap: true,
               physics: const AlwaysScrollableScrollPhysics(),
-              itemCount: categoriesList.length,
+              itemCount: categoryProvider.categoriesList.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 0.0,
@@ -63,12 +47,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
                               color: Colors.red,
                               size: 28,
                             ),
-                            imageUrl: categoriesList[index].image.toString()),
+                            imageUrl: categoryProvider
+                                .categoriesList[index].image
+                                .toString()),
                       ),
                       Align(
                         alignment: Alignment.center,
                         child: Text(
-                          categoriesList[index].name.toString(),
+                          categoryProvider.categoriesList[index].name
+                              .toString(),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 24,

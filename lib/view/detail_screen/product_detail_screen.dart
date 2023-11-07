@@ -1,37 +1,37 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:store_api/controller/detailcontroller.dart';
 import 'package:store_api/helpers/colors.dart';
-import 'package:store_api/model/product_model.dart';
-import 'package:store_api/services/singleproduct._services.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({super.key, required this.id});
   final int id;
+  const ProductDetailScreen({super.key, required this.id});
+
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
-  ProductModel? productModel;
-
+  //get products at once
   @override
-  void didChangeDependencies() {
-    getsingleproducts();
-    super.didChangeDependencies();
-  }
-
-  Future<void> getsingleproducts() async {
-    productModel = await SingleProductServices.getProductsbyId(widget.id);
-    setState(() {});
+  void initState() {
+    final detailsProvider =
+        Provider.of<ProductDetailsController>(context, listen: false);
+    detailsProvider.getsingleproducts(widget.id);
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    //provider
+    final detailsProvider = Provider.of<ProductDetailsController>(context);
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-          child: productModel == null
+          child: detailsProvider.productModel == null
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
@@ -55,7 +55,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              productModel!.category!.name.toString(),
+                              detailsProvider.productModel!.category!.name
+                                  .toString(),
                               style: const TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.w500),
                             ),
@@ -68,9 +69,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 Flexible(
                                     flex: 3,
                                     child: Text(
-                                      productModel!.title.toString(),
+                                      detailsProvider.productModel!.title
+                                          .toString(),
                                       textAlign: TextAlign.start,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold),
                                     )),
@@ -85,7 +87,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                                     33, 150, 243, 1)),
                                             children: <TextSpan>[
                                           TextSpan(
-                                              text: productModel!.price
+                                              text: detailsProvider
+                                                  .productModel!.price
                                                   .toString(),
                                               style: TextStyle(
                                                   color: AppColors()
@@ -106,7 +109,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           itemBuilder: (context, index) {
                             return FancyShimmerImage(
                               width: double.infinity,
-                              imageUrl: productModel!.images![index].toString(),
+                              imageUrl: detailsProvider
+                                  .productModel!.images![index]
+                                  .toString(),
                               boxFit: BoxFit.fill,
                             );
                           },
@@ -122,22 +127,23 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         height: 18,
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Description',
                               style: TextStyle(
                                   fontSize: 24, fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 18,
                             ),
                             Text(
-                              productModel!.description.toString(),
+                              detailsProvider.productModel!.description
+                                  .toString(),
                               textAlign: TextAlign.start,
-                              style: TextStyle(fontSize: 25),
+                              style: const TextStyle(fontSize: 25),
                             )
                           ],
                         ),
