@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:store_api/controller/homecontroller.dart';
+import 'package:store_api/controller/home_controller.dart';
 import 'package:store_api/helpers/colors.dart';
-import 'package:store_api/view/categoryscreen/category_screen.dart';
+import 'package:store_api/view/category_screen/category_screen.dart';
 import 'package:store_api/view/widgets/products.dart';
 import 'package:store_api/view/widgets/salecarousel.dart';
-import '../productscreen/allproduct_screen.dart';
+import '../product_screen/allproduct_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

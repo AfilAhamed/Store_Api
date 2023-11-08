@@ -18,6 +18,7 @@ class ProductServices {
         return ProductModel.productsFromSnapshoot(templist);
       } else {
         throw jasonData['message'];
+        // return null;
       }
     } catch (errors) {
       throw errors.toString();

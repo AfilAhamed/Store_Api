@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:store_api/helpers/colors.dart';
-import 'package:store_api/view/detailscreen/product_detail_screen.dart';
+import 'package:store_api/view/detail_screen/product_detail_screen.dart';
 
 class ProductsWidget extends StatelessWidget {
   final String imageUrl, title, price;

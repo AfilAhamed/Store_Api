@@ -7,6 +7,7 @@ class HomeScreenController extends ChangeNotifier {
   List<ProductModel> productList = [];
 
   Future<void> getProducts() async {
+    productList.clear();
     productList = await ProductServices.getAllProducts();
     // setState(() {});
     notifyListeners();

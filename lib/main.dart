@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_api/controller/categorycontroller.dart';
-import 'package:store_api/controller/detailcontroller.dart';
-import 'package:store_api/controller/homecontroller.dart';
+import 'package:store_api/controller/category_controller.dart';
+import 'package:store_api/controller/details_controller.dart';
+import 'package:store_api/controller/home_controller.dart';
 import 'package:store_api/helpers/colors.dart';
-import 'package:store_api/view/homescreen/home_screen.dart';
+import 'package:store_api/view/home_screen/home_screen.dart';
 
 void main() {
   runApp(const MyApp());

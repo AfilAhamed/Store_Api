@@ -2,7 +2,7 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:store_api/controller/categorycontroller.dart';
+import 'package:store_api/controller/category_controller.dart';
 import 'package:store_api/helpers/colors.dart';
 
 class CategoryScreen extends StatelessWidget {

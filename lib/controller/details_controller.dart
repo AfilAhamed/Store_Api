@@ -7,8 +7,8 @@ class ProductDetailsController extends ChangeNotifier {
   ProductModel? productModel;
 
   Future<void> getsingleproducts(int id) async {
+    productModel = null;
     productModel = await SingleProductServices.getProductsbyId(id);
-    //  setState(() {});
     notifyListeners();
   }
 }

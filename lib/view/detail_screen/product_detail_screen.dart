@@ -2,7 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_api/controller/detailcontroller.dart';
+import 'package:store_api/controller/details_controller.dart';
 import 'package:store_api/helpers/colors.dart';
 
 class ProductDetailScreen extends StatefulWidget {
