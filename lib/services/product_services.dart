@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:store_api/model/product_model.dart';
 
 class ProductServices {
-  static Future<List<ProductModel>> getAllProducts() async {
+  static Future<List<ProductModel>?> getAllProducts() async {
     var response =
         await http.get(Uri.parse('https://api.escuelajs.co/api/v1/products'));
 
@@ -17,8 +17,8 @@ class ProductServices {
         }
         return ProductModel.productsFromSnapshoot(templist);
       } else {
-        throw jasonData['message'];
-        // return null;
+        // throw jasonData['message'];
+        return null;
       }
     } catch (errors) {
       throw errors.toString();

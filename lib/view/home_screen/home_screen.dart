@@ -139,18 +139,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisSpacing: 0.0,
                                 childAspectRatio: 0.7),
                         itemBuilder: (context, index) {
-                          return homeProvider.productList.isEmpty
+                          return homeProvider.productList!.isEmpty
                               ? const Center(
                                   child: CircularProgressIndicator(),
                                 )
                               : ProductsWidget(
                                   imageUrl: homeProvider
-                                      .productList[index].images![0],
-                                  title: homeProvider.productList[index].title
+                                      .productList![index].images![0],
+                                  title: homeProvider.productList![index].title
                                       .toString(),
-                                  price: homeProvider.productList[index].price
+                                  price: homeProvider.productList![index].price
                                       .toString(),
-                                  id: homeProvider.productList[index].id!
+                                  id: homeProvider.productList![index].id!
                                       .toInt(),
                                 );
                         },
