@@ -1,16 +1,18 @@
-import 'dart:convert';
+//import 'dart:convert';
 
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+//import 'package:http/http.dart' as http;
 import 'package:store_api/model/product_model.dart';
 
 class ProductServices {
   static Future<List<ProductModel>?> getAllProducts() async {
-    var response =
-        await http.get(Uri.parse('https://api.escuelajs.co/api/v1/products'));
+    final Dio dio = Dio();
+    var response = await dio.get('https://api.escuelajs.co/api/v1/products');
 
     try {
       List templist = [];
-      var jasonData = jsonDecode(response.body);
+      var jasonData = response.data;
+      print(jasonData);
       if (response.statusCode == 200) {
         for (var i in jasonData) {
           templist.add(i);
