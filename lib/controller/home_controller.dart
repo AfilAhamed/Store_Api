@@ -9,7 +9,6 @@ class HomeScreenController extends ChangeNotifier {
   Future<void> getProducts() async {
     productList!.clear();
     productList = await ProductServices.getAllProducts();
-    // setState(() {});
     notifyListeners();
   }
 
