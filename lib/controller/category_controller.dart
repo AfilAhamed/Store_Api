@@ -7,7 +7,6 @@ class CategoryController extends ChangeNotifier {
 
   Future<void> getCategories() async {
     categoriesList = await CategoryServices.getAllCategories();
-    //  setState(() {});
     notifyListeners();
   }
 
