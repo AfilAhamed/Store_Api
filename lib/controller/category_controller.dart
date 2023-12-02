@@ -6,7 +6,7 @@ class CategoryController extends ChangeNotifier {
   List<CategoryModel> categoriesList = [];
 
   Future<void> getCategories() async {
-    categoriesList = await CategoryServices.getAllCategories();
+    categoriesList = (await CategoryServices.getAllCategories())!;
     notifyListeners();
   }
 

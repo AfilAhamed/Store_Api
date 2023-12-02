@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store_api/services/search_services.dart';
-
 import '../model/product_model.dart';
 import '../services/product_services.dart';
 
@@ -17,8 +16,6 @@ class HomeScreenController extends ChangeNotifier {
   List<ProductModel>? searchResult = [];
   Future<void> searchProducts(String query) async {
     searchResult = await SearchServices.getProductsByTitle(query);
-    print(searchResult);
-    //productList = searchResult;
 
     notifyListeners();
   }

@@ -1,7 +1,5 @@
-//import 'dart:convert';
-
+import 'dart:developer';
 import 'package:dio/dio.dart';
-//import 'package:http/http.dart' as http;
 import 'package:store_api/model/product_model.dart';
 
 class ProductServices {
@@ -12,18 +10,17 @@ class ProductServices {
     try {
       List templist = [];
       var jasonData = response.data;
-      print(jasonData);
       if (response.statusCode == 200) {
         for (var i in jasonData) {
           templist.add(i);
         }
         return ProductModel.productsFromSnapshoot(templist);
       } else {
-        // throw jasonData['message'];
         return null;
       }
     } catch (errors) {
-      throw errors.toString();
+      log(errors.toString());
+      return null;
     }
   }
 }

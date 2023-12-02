@@ -1,23 +1,29 @@
-import 'dart:convert';
+import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:store_api/model/product_model.dart';
-import 'package:http/http.dart' as http;
 
 class SearchServices {
-  static Future<List<ProductModel>> getProductsByTitle(String title) async {
-    final response = await http.get(
-        Uri.parse('https://api.escuelajs.co/api/v1/products/?title=$title'));
+  static Future<List<ProductModel>?> getProductsByTitle(String title) async {
+    final Dio dio = Dio();
 
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonData = json.decode(response.body);
+    final response =
+        await dio.get('https://api.escuelajs.co/api/v1/products/?title=$title');
 
-      // Assuming your Product class has a fromJson method
-      List<ProductModel> products =
-          jsonData.map((data) => ProductModel.fromJson(data)).toList();
+    try {
+      if (response.statusCode == 200) {
+        final List<dynamic> jsonData = response.data;
 
-      return products;
-    } else {
-      throw Exception('Failed to load products');
+        List<ProductModel> products =
+            jsonData.map((data) => ProductModel.fromJson(data)).toList();
+
+        return products;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      log(e.toString());
+      return null;
     }
   }
 }

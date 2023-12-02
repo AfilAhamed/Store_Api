@@ -1,19 +1,25 @@
-import 'dart:convert';
-
+import 'dart:developer';
+import 'package:dio/dio.dart';
 import '../model/product_model.dart';
-import 'package:http/http.dart' as http;
 
 class SingleProductServices {
-  static Future<ProductModel> getProductsbyId(int id) async {
-    var response = await http
-        .get(Uri.parse('https://api.escuelajs.co/api/v1/products/$id'));
+  static Future<ProductModel?> getProductsbyId(int id) async {
+    final Dio dio = Dio();
 
-    var jsonData = jsonDecode(response.body);
+    var response =
+        await dio.get('https://api.escuelajs.co/api/v1/products/$id');
 
-    if (response.statusCode == 200) {
-      return ProductModel.fromJson(jsonData);
-    } else {
-      throw 'error';
+    try {
+      if (response.statusCode == 200) {
+        var jsonData = response.data;
+
+        return ProductModel.fromJson(jsonData);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      log(e.toString());
+      return null;
     }
   }
 }

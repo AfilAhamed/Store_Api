@@ -1,25 +1,27 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'dart:developer';
+import 'package:dio/dio.dart';
 import 'package:store_api/model/category_model.dart';
 
 class CategoryServices {
-  static Future<List<CategoryModel>> getAllCategories() async {
-    var response =
-        await http.get(Uri.parse('https://api.escuelajs.co/api/v1/categories'));
+  static Future<List<CategoryModel>?> getAllCategories() async {
+    final Dio dio = Dio();
+
+    var response = await dio.get('https://api.escuelajs.co/api/v1/categories');
 
     try {
       List templist = [];
-      var jasonData = jsonDecode(response.body);
+      var jasonData = response.data;
       if (response.statusCode == 200) {
         for (var i in jasonData) {
           templist.add(i);
         }
         return CategoryModel.categoriesFromSnapshoot(templist);
       } else {
-        throw jasonData['message'];
+        return jasonData['message'];
       }
     } catch (error) {
-      throw error.toString();
+      log(error.toString());
+      return null;
     }
   }
 }
