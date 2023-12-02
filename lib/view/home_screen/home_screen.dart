@@ -85,13 +85,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: AppColors().lightIconsColor,
                       )),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Expanded(
                   child: isSearching
                       ? ListView.builder(
-                          physics: AlwaysScrollableScrollPhysics(),
+                          physics: const AlwaysScrollableScrollPhysics(),
                           // shrinkWrap: true,
                           itemCount: homeProvider.searchResult!.length,
                           itemBuilder: (context, index) {
@@ -115,9 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   title: Text(homeProvider
                                       .searchResult![index].title
                                       .toString()),
-                                  // Add other widgets based on your data model
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                               ],
